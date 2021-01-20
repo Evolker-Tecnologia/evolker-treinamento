@@ -1,13 +1,13 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
-import App from './App';
 import reportWebVitals from './reportWebVitals';
-import HelloWorld from './Components/Hello-World';
+import './Components/Copy/copy.css';
+import List from './Components/List/List';
 
 ReactDOM.render(
   <React.StrictMode>
-    <HelloWorld />
+    <List />
   </React.StrictMode>,
   document.getElementById('root')
 );
