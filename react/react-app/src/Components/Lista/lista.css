@@ -6,3 +6,7 @@
 ul {
     margin: 0;
 }
+
+.deleteBtn {
+    margin-left: 2rem;
+}
