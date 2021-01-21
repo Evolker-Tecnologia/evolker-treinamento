@@ -18,8 +18,10 @@ class Lista extends Component {
             <div className="list">
                 <ul>
                     {/* Recebe o item da lista através dos props (propriedade - (item={item})) */}
-                    <li>{this.props.item.nome} <span><button className="deleteBtn" onClick={() => this.props.onDelete(this.props.item.id)}>Deletar</button></span></li>
+                    <li>{this.props.item.nome} <span><button className="btn" onClick={() => this.props.onDelete(this.props.item.id)}>Deletar</button></span></li>
 
+
+                    <span><button className="btn" onClick={() => this.props.onEdit(this.props.item)}>Editar</button></span>
                 </ul>
             </div>
         );

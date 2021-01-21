@@ -10,13 +10,15 @@ import './controlador.css';
 class ControladorLista extends Component {
     //Esse state é interno e privado, o componente <Lista> não tem acesso a este state, seus valores são passados através dos props.
     state = {
-        itens: []
+        itens: [],
+        itenSelecionado: { id: new Date(), nome: '' }
     };
 
     //Função para receber o valor atual do Input através do Onchange.
     receberInputeSubstituir = valor => {
         //Ao substituir o state do componente com setState, cria-se uma propriedade (nome) e atribui a ela o valor do target que é recebido através do input.
         this.setState({ nome: valor.target.value });
+        this.setState({ itenSelecionado: valor.target.value });
         // console.log(this.state.name);
     }
 
@@ -37,20 +39,27 @@ class ControladorLista extends Component {
         this.setState({ itens });
     }
 
+    editarItem = (item) => {
+        this.setState({ itenSelecionado: item });
+        console.log(this.state.itemSelecionado);
+    }
+
+
     //render() é um método padrão do React para renderizar (mostrar no DOM).
     render() {
         return (
             //Os elementos dentro do return devem sempre estar entre <div></div>.
             <div className="field">
+                <button onClick={() => console.log(this.state)}>Print</button>
                 <h1 className="title">Lista</h1>
                 <input className="input" type="text" onChange={this.receberInputeSubstituir}></input>
                 {/* ao clicar envia o name atual do state e um id gerado automaticamente como um objeto no argumento para a função adicionarItemNaLista() */}
                 <button onClick={() => this.adicionarItemNaLista({ id: new Date(), nome: this.state.nome })}>Adicionar</button>
 
                 {this.state.itens.map((item, index) =>
-                    //Passar onAdd e item como props para lista.jsx
+                    //Passar onAdd, onDelete e item como props para lista.jsx
                     //A propriedade key é usado internamente pelo React
-                    <Lista key={index} onAdd={this.adicionarItemNaLista} onDelete={this.deletarItem} item={item} />)}
+                    <Lista key={index} onAdd={this.adicionarItemNaLista} onDelete={this.deletarItem} onEdit={this.editarItem} item={item} />)}
             </div>
         );
     }
