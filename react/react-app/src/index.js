@@ -2,12 +2,11 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
 import reportWebVitals from './reportWebVitals';
-import './Components/Copy/copy.css';
-import List from './Components/List/List';
+import ControladorLista from './Components/Controlador/conrolador';
 
 ReactDOM.render(
   <React.StrictMode>
-    <List />
+    <ControladorLista />
   </React.StrictMode>,
   document.getElementById('root')
 );
