@@ -55,13 +55,14 @@ class ControladorLista extends Component {
         //A propriedade modificado deverá ser sempre false para que esconda o input de edição
         itemAtualizado.modificado = false;
 
+        let copyArray = [...this.state.itens];
         //Substitui o item antereior de index X pelo item atualizado.
         if (index > -1) {
-            this.state.itens[index] = itemAtualizado;
+            copyArray[index] = itemAtualizado;
         }
 
         //Atualizo as propriedades do array de itens.
-        this.setState({ itens: this.state.itens });
+        this.setState({ itens: copyArray });
     }
 
 
