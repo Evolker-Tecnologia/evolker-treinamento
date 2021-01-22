@@ -10,3 +10,7 @@ ul {
 .btn {
     margin-left: 1rem;
 }
+
+.completed {
+    color: red;
+}
