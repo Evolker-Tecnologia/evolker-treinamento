@@ -6,41 +6,25 @@
   <title>Hello World</title>
   <script src="https://unpkg.com/react@17/umd/react.development.js"></script>
   <script src="https://unpkg.com/react-dom@17/umd/react-dom.development.js"></script>
-
-  <!-- Agora você pode usar o JSX em qualquer tag <script> somente adicionando o atributo type="text/babel" a ele-->
-  <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
-
 </head>
 
 <body>
   <div id="root"></div>
-
-  <!-- LIKE BUTTON -->
+  <!-- LIKE BUTTON CONTAINER-->
   <div id="like_button_container"></div>
-
+  <!-- SCRIPTS -->
   <!-- Note: when deploying, replace "development.js" with "production.min.js". -->
   <script src="https://unpkg.com/react@17/umd/react.development.js" crossorigin></script>
   <script src="https://unpkg.com/react-dom@17/umd/react-dom.development.js" crossorigin></script>
-
+  <!-- LIKE BUTTON -->
   <script src="like_button.js"></script>
   <script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
-  <!--
-      Note: this page is a great way to try React but it's not suitable for production.
-      It slowly compiles JSX with Babel in the browser and uses a large development build of React.
-
-      Read this section for a production-ready setup with JSX:
-      https://reactjs.org/docs/add-react-to-a-website.html#add-jsx-to-a-project
-
-    -->
-
   <!-- HELLO WORLD -->
   <script type="text/babel">
-
     ReactDOM.render(
         <h1>Hello, world!</h1>,
         document.getElementById('root')
       );
-
     </script>
 </body>
 
