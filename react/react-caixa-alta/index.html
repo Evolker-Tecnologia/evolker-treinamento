@@ -1,0 +1,18 @@
+<input id="input"></input> <button id="enter">Enter</button>
+<p id="result"></p>
+
+<script>
+    let input = document.getElementById('input');
+    let enter = document.getElementById('enter');
+    let result = document.getElementById('result');
+
+
+    function inputMaiusculo() {
+        let value = input.value;
+        let data = value.toUpperCase();
+        result.innerHTML = data;
+        console.log(data);
+    }
+
+    enter.addEventListener("click", inputMaiusculo);
+</script>
