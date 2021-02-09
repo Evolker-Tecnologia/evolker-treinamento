@@ -1,18 +1,39 @@
-<input id="input"></input> <button id="enter">Enter</button>
-<p id="result"></p>
+<div id="root"></div>
+
+
+<!-- <input id="input"></input>
+<button id="enter">Enter</button>
+<p id="result"></p> -->
+
+
+<script src="https://unpkg.com/react@17/umd/react.development.js" crossorigin></script>
+<script src="https://unpkg.com/react-dom@17/umd/react-dom.development.js" crossorigin></script>
 
 <script>
-    let input = document.getElementById('input');
-    let enter = document.getElementById('enter');
-    let result = document.getElementById('result');
+    var ui =
+        React.createElement('div', {},
+            React.createElement('input', {}, null),
+            React.createElement('button', {}, 'Enviar'),
+
+        )
+
+    ReactDOM.render(ui, document.getElementById('root'));
 
 
-    function inputMaiusculo() {
-        let value = input.value;
-        let data = value.toUpperCase();
-        result.innerHTML = data;
-        console.log(data);
-    }
+    // let input = document.getElementById('input');
+    // let enter = document.getElementById('enter');
+    // let result = document.getElementById('result');
 
-    enter.addEventListener("click", inputMaiusculo);
+
+    // function inputMaiusculo() {
+    //     let value = input.value;
+    //     let data = value.toUpperCase();
+    //     result.innerHTML = data;
+    //     console.log(data);
+    // }
+
+    // enter.addEventListener("click", inputMaiusculo);
 </script>
+
+
+<!-- http://jamesknelson.com/learn-raw-react-no-jsx-flux-es6-webpack/ -->
