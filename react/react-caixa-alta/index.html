@@ -5,11 +5,11 @@
 <button id="enter">Enter</button>
 <p id="result"></p> -->
 
-
+<script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
 <script src="https://unpkg.com/react@17/umd/react.development.js" crossorigin></script>
 <script src="https://unpkg.com/react-dom@17/umd/react-dom.development.js" crossorigin></script>
 
-<script>
+<script type="text/babel">
     const e = React.createElement;
 
 
@@ -37,37 +37,27 @@
             this.setState({
                 value: data
             });
-            return e('div', null, this.state.value) //Tentativa de passar esse elemento para o Dom 
         }
 
 
         render() {
-            return e('div', {},
-                e('input', {
-                    key: "input",
-                    type: "text",
-                    value: this.state.value,
-                    onChange: this.handleEditInput
-                }),
-                e('button', {
-                    key: "transform",
-                    onClick: this.handleSubmit
-                }, 'Enviar'), e('div', this.handleSubmit, this.state.value) //Tentativa falhou 
+            return (
+            <div>
+                <input type="text" onChange={this.handleEditInput}></input>
+                <button onClick={this.handleSubmit}>Caixa Alta!</button>
+                <div>{this.state.value}</div>
+            </div>      
             )
         }
     }
 
-
     ReactDOM.render(
-        e(InputRender),
+        <InputRender/>,
         document.getElementById('root')
     );
 </script>
 
-
-<!-- http://jamesknelson.com/learn-raw-react-no-jsx-flux-es6-webpack/ -->
-
-
+<!-- JS PURO -->
 <!-- 
     
     let input = document.getElementById('input');
@@ -83,3 +73,18 @@
      }
 
     enter.addEventListener("click", inputMaiusculo); -->
+
+
+<!-- REACT PURO -->
+<!-- e('div', {},
+    e('input', {
+        key: "input",
+        type: "text",
+        value: this.state.value,
+        onChange: this.handleEditInput
+    }),
+    e('button', {
+        key: "transform",
+        onClick: this.handleSubmit
+    }, 'Enviar'), e('div', this.handleSubmit, this.state.value) //Tentativa falhou 
+) -->
