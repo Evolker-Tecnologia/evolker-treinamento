@@ -10,30 +10,76 @@
 <script src="https://unpkg.com/react-dom@17/umd/react-dom.development.js" crossorigin></script>
 
 <script>
-    var ui =
-        React.createElement('div', {},
-            React.createElement('input', {}, null),
-            React.createElement('button', {}, 'Enviar'),
-
-        )
-
-    ReactDOM.render(ui, document.getElementById('root'));
+    const e = React.createElement;
 
 
-    // let input = document.getElementById('input');
-    // let enter = document.getElementById('enter');
-    // let result = document.getElementById('result');
+    class InputRender extends React.Component {
+
+        constructor(props) {
+            super(props);
+            this.state = {
+                value: ''
+            };
+            this.handleEditInput = this.handleEditInput.bind(this);
+            this.handleSubmit = this.handleSubmit.bind(this);
+        }
 
 
-    // function inputMaiusculo() {
-    //     let value = input.value;
-    //     let data = value.toUpperCase();
-    //     result.innerHTML = data;
-    //     console.log(data);
-    // }
 
-    // enter.addEventListener("click", inputMaiusculo);
+        handleEditInput(evt) {
+            this.setState({
+                value: evt.target.value
+            });
+        }
+
+        handleSubmit() {
+            let data = this.state.value.toUpperCase();
+            this.setState({
+                value: data
+            });
+            return e('div', null, this.state.value) //Tentativa de passar esse elemento para o Dom 
+        }
+
+
+        render() {
+            return e('div', {},
+                e('input', {
+                    key: "input",
+                    type: "text",
+                    value: this.state.value,
+                    onChange: this.handleEditInput
+                }),
+                e('button', {
+                    key: "transform",
+                    onClick: this.handleSubmit
+                }, 'Enviar'), e('div', this.handleSubmit, this.state.value) //Tentativa falhou 
+            )
+        }
+    }
+
+
+    ReactDOM.render(
+        e(InputRender),
+        document.getElementById('root')
+    );
 </script>
 
 
 <!-- http://jamesknelson.com/learn-raw-react-no-jsx-flux-es6-webpack/ -->
+
+
+<!-- 
+    
+    let input = document.getElementById('input');
+    let enter = document.getElementById('enter');
+    let result = document.getElementById('result');
+
+
+    function inputMaiusculo() {
+        let value = input.value;
+        let data = value.toUpperCase();
+        result.innerHTML = data;
+        console.log(data);
+     }
+
+    enter.addEventListener("click", inputMaiusculo); -->
