@@ -15,44 +15,32 @@ class InputRender extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            value: ''
+            texto: ''
         };
-        this.handleEditInput = this.handleEditInput.bind(this);
-        this.handleSubmit = this.handleSubmit.bind(this);
+        this.transformarEmCaixaAlta = this.transformarEmCaixaAlta.bind(this);
     }
 
 
 
-    handleEditInput(evt) {
+    transformarEmCaixaAlta(evt) {
         this.setState({
-            value: evt.target.value
+            texto: evt.target.value.toUpperCase()
         });
     }
-
-    handleSubmit() {
-        let data = this.state.value.toUpperCase();
-        this.setState({
-            value: data
-        });
-    }
-
 
     render() {
         return (
             <div className="pt-3">
                 <Container>
                     <Col>
-                        <InputGroup className="mb-3" onChange={this.handleEditInput}>
+                        <InputGroup className="mb-3" onChange={this.transformarEmCaixaAlta}>
                             <FormControl />
-                            <InputGroup.Append>
-                                <Button variant="dark" onClick={this.handleSubmit}>Caixa Alta!</Button>
-                            </InputGroup.Append>
                         </InputGroup>
 
 
                         <Card>
                             <Card.Header as="h5">Caixa Alta</Card.Header>
-                            <Card.Body>{this.state.value}</Card.Body>
+                            <Card.Body>{this.state.texto}</Card.Body>
                         </Card>
                     </Col>
                 </Container>
