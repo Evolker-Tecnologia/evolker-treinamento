@@ -1,0 +1,14 @@
+<div id="root">
+    {{ message }}
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+<script>
+    var app = new Vue({
+        //identificar o elemento no dom através do id.
+        el: '#root',
+        data: {
+            message: 'Hello World!'
+        }
+    })
+</script>
