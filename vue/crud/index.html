@@ -1,0 +1,73 @@
+<h1>CRUD com Vue</h1>
+<div id="root">
+
+    <label>Novo Usuário:</label>
+    <input type="text" v-on:input="novonome = $event.target.value"></input>
+    <button v-on:click="adicionarUsuario">Adicionar</button>
+
+    <h3>Lista de Usuários</h3>
+    <ul>
+        <li v-for="usuario in usuarios">{{usuario.nome}} <button v-on:click="editarUsuario(usuario)">Editar</button>
+            <button v-on:click="deletarUsuario(usuario)">Deletar</button></li>
+    </ul>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+
+<script>
+    let crud = new Vue({
+        el: '#root',
+        data: {
+            usuarios: [{
+                    id: 1,
+                    nome: 'Maria',
+                    editado: false
+                },
+                {
+                    id: 2,
+                    nome: 'João',
+                    editado: false
+                },
+                {
+                    id: 3,
+                    nome: 'Renata',
+                    editado: false
+                },
+                {
+                    id: 4,
+                    nome: 'Roberta',
+                    editado: false
+                },
+                {
+                    id: 5,
+                    nome: 'Lucas',
+                    editado: false
+                },
+                {
+                    id: 6,
+                    nome: 'Bárbara'
+                }
+            ],
+
+            novonome: ''
+        },
+
+        methods: {
+            adicionarUsuario: function () {
+                crud.usuarios.push({
+                    id: this.usuarios.length + 1,
+                    nome: this.novonome
+                })
+            },
+
+            deletarUsuario: function (usuario) {
+                acharIndex = crud.usuarios.indexOf(usuario)
+                crud.usuarios.splice(acharIndex, 1);
+            },
+
+            editarUsuario: function (usuario) {
+
+            }
+        }
+    })
+</script>
