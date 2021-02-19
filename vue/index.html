@@ -1,13 +1,33 @@
+<!-- HELLO WORLD -->
 <div id="root">
-    {{ message }}
+    <p>Transformar usando filter</p>
+    <input v-model.lazy="texto1">
+    <p>{{ texto1 | uppercase }}</p>
+    <p>Transformar usando diretiva</p>
+    <input v-model.lazy="texto2" v-uppercase>
+    <p>{{ texto2 | uppercase }}</p>
 </div>
 
+
+<!-- Scripts -->
 <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+
 <script>
-    var app = new Vue({
+    Vue.filter('uppercase', function (value) {
+        return value.toUpperCase()
+    })
+
+    Vue.directive("uppercase", {
+        update: function (el) {
+            el.value = el.value.toUpperCase()
+        }
+    })
+
+    let app = new Vue({
         el: '#root',
         data: {
-            message: 'Hello World!'
+            texto1: '',
+            texto2: ''
         }
     })
 </script>
