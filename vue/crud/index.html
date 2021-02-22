@@ -2,13 +2,18 @@
 <div id="root">
 
     <label>Novo Usuário:</label>
-    <input type="text" v-on:input="novonome = $event.target.value"></input>
+    <input type="text" v-on:input="novoNome = $event.target.value"></input>
     <button v-on:click="adicionarUsuario">Adicionar</button>
 
     <h3>Lista de Usuários</h3>
     <ul>
-        <li v-for="usuario in usuarios">{{usuario.nome}} <button v-on:click="editarUsuario(usuario)">Editar</button>
-            <button v-on:click="deletarUsuario(usuario)">Deletar</button></li>
+        <li v-for="usuario in usuarios">
+            <input v-if="usuario.editado" @keyup.enter="atualizarUsuario(usuario)"
+                v-on:input="novoNome = $event.target.value" type="text" :placeholder="[[usuario.nome]]">
+            <span v-if="!usuario.editado">{{usuario.nome}}</span>
+            <button v-on:click="editarUsuario(usuario)">Editar</button>
+            <button v-on:click="deletarUsuario(usuario)">Deletar</button>
+        </li>
     </ul>
 </div>
 
@@ -45,18 +50,19 @@
                 },
                 {
                     id: 6,
-                    nome: 'Bárbara'
+                    nome: 'Bárbara',
+                    editado: false
                 }
             ],
 
-            novonome: ''
+            novoNome: ''
         },
 
         methods: {
             adicionarUsuario: function () {
                 crud.usuarios.push({
                     id: this.usuarios.length + 1,
-                    nome: this.novonome
+                    nome: this.novoNome
                 })
             },
 
@@ -66,7 +72,13 @@
             },
 
             editarUsuario: function (usuario) {
+                usuario.editado = true;
+            },
 
+            atualizarUsuario: function (usuario) {
+                usuario.editado = false;
+                usuario.nome = this.novoNome;
+                this.novoNome = ''
             }
         }
     })
