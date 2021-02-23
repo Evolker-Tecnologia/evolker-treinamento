@@ -3,7 +3,7 @@
 
     <label>Novo Usuário:</label>
     <input id="input" type="text" v-on:input="novoNome = $event.target.value"></input>
-    <button v-on:click="adicionarUsuario" :disabled='isDisabled'>Adicionar</button>
+    <button v-on:click="adicionarUsuario" :disabled="novoNome == 0 || novoNome == ''">Adicionar</button>
 
     <h3>Lista de Usuários</h3>
     <ul>
@@ -56,23 +56,22 @@
             ],
 
             novoNome: '',
-            isDisabled: false
+            isDisabled: true
         },
 
         methods: {
 
+
+
             adicionarUsuario: function () {
 
-                if (input.value == 0 || input.value == '') {
-                    this.isDisabled = true
-                } else {
-                    crud.usuarios.push({
-                        id: this.usuarios.length + 1,
-                        nome: this.novoNome
-                    })
-                    this.novoNome = ''
-                    input.value = ''
-                }
+                crud.usuarios.push({
+                    id: this.usuarios.length + 1,
+                    nome: this.novoNome
+                })
+
+                this.novoNome = ''
+                input.value = ''
             },
 
             deletarUsuario: function (usuario) {
@@ -89,6 +88,8 @@
                 usuario.nome = this.novoNome;
                 this.novoNome = ''
             }
-        }
+        },
+
+
     })
 </script>
