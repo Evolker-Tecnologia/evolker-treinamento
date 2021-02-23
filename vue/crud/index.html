@@ -2,17 +2,17 @@
 <div id="root">
 
     <label>Novo Usuário:</label>
-    <input id="input" type="text" v-on:input="novoNome = $event.target.value"></input>
-    <button v-on:click="adicionarUsuario" :disabled="novoNome == 0 || novoNome == ''">Adicionar</button>
+    <input id="input" type="text" @input="novoNome = $event.target.value"></input>
+    <button @click="adicionarUsuario" :disabled="novoNome == 0 || novoNome == ''">Adicionar</button>
 
     <h3>Lista de Usuários</h3>
     <ul>
         <li v-for="usuario in usuarios">
             <input v-if="usuario.editado" @keyup.enter="atualizarUsuario(usuario)"
-                v-on:input="novoNome = $event.target.value" type="text" :placeholder="[[usuario.nome]]">
+                @input="novoNome = $event.target.value" type="text" :placeholder="[[usuario.nome]]">
             <span v-if="!usuario.editado">{{usuario.nome}}</span>
-            <button v-on:click="editarUsuario(usuario)">Editar</button>
-            <button v-on:click="deletarUsuario(usuario)">Deletar</button>
+            <button @click="editarUsuario(usuario)">Editar</button>
+            <button @click="deletarUsuario(usuario)">Deletar</button>
         </li>
     </ul>
 </div>
