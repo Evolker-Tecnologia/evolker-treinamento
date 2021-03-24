@@ -1,16 +1,21 @@
 <!-- HELLO WORLD -->
-<div id="root">
-    {{ message }}
+<div id="app">
+    <input type="text" v-model="mensagem" />
+    <h4>{{ mensagem | converterEmCaixaAlta }}</h4>
 </div>
 
 <!-- Scripts -->
 <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
 
 <script>
-    var app = new Vue({
-        el: '#root',
+    Vue.filter('converterEmCaixaAlta', function (msg) {
+        return msg.toUpperCase()
+    })
+
+    new Vue({
+        el: '#app',
         data: {
-            message: 'Hello World!'
+            mensagem: 'Hello World!'
         }
     })
 </script>
