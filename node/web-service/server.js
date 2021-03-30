@@ -45,9 +45,15 @@ function caixaAlta(entr) {
 }
 
 
-app.get('/converter', (req, res) => {
+// app.get('/converter', (req, res) => {
 
-    res.send(caixaAlta("Karen"));
+//     res.send(caixaAlta("Karen"));
+// });
+
+
+app.get('/converter', (req, res) => {
+    var entrada = req.query.entrada;
+    res.send(caixaAlta(entrada));
 });
 
 // Executar na porta execífica ou 8080. 
