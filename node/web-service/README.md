@@ -1,0 +1,19 @@
+# Web-service em NodeJS
+
+# Tecnologias
+
+* Node.js 14.16.0
+  * npm 6.14.11
+
+# Instalação
+
+* npm i express
+* npm init
+
+# Execução
+
+* npm start
+
+# Documentação
+
+* Projeto de um servidor backend em Node que simula uma API. O objetivo foi criar a cada tarefa funcionalidades para o funcionamento do servidor como retornar um texto em caixa alta, retornar um texto "Hello World", criar endpoints que retornem arquivos json.
