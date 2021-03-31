@@ -1,3 +1,6 @@
 .idea/
+.vscode/
+
+# Node
 node_modules/
 pacakge-lock.json
