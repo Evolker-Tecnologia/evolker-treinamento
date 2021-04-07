@@ -13,13 +13,14 @@ function caixaAlta(entr) {
     return json;
 }
 
-app.get('/converter', (req, res) => {
-    var entrada = req.query.entrada;
+app.get('/converter/:entrada', (req, res) => {
+    // var entrada = req.query.entrada;
+    var entrada = req.params['entrada']
     res.send(caixaAlta(entrada));
 });
 
-app.post('/converter', jsonParser, (req, res) => {
-    var texto = req.body.entrada;
+app.post('/converter/:entrada', jsonParser, (req, res) => {
+    var texto = req.params['entrada'];
     var saida = caixaAlta(texto);
     res.end(JSON.stringify(saida));
 });
