@@ -1,8 +1,26 @@
+const mysql = require('mysql');
 const express = require('express');
 const app = express();
 
 const bodyParser = require('body-parser');
 var jsonParser = bodyParser.json();
+
+
+var mysqlConnection = mysql.createConnection({
+    host: 'localhost',
+    user: 'root',
+    password: 'root',
+    database: 'mydb',
+    multipleStatements: true
+});
+
+mysqlConnection.connect((err) => {
+    if (!err)
+        console.log('Conexão estabelecida com sucesso');
+    else
+        console.log('Falha na conexão!' + JSON.stringify(err, undefined, 2));
+});
+
 
 function caixaAlta(entr) {
     let json = {
