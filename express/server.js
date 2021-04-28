@@ -1,6 +1,10 @@
+const cors = require('cors');
+
+
 const mysql = require('mysql');
 const express = require('express');
 const app = express();
+app.use(cors());
 
 const bodyParser = require('body-parser');
 var jsonParser = bodyParser.json();
@@ -14,7 +18,7 @@ var mysqlConnection = mysql.createConnection({
     multipleStatements: true
 });
 
-//Criar conexão
+//Conexão Bd
 mysqlConnection.connect((err) => {
     if (!err)
         console.log('Conexão estabelecida com sucesso');
@@ -24,16 +28,22 @@ mysqlConnection.connect((err) => {
 
 });
 
+const PORT = process.env.PORT || 8080;
+app.listen(PORT);
+
 //Ler
-app.get('/converter/:entrada', (req, res) => {
+app.get('/converter', jsonParser, (req, res) => {
     let result = [];
     mysqlConnection.query('SELECT * FROM users', (err, rows) => {
         if (err) throw err;
 
         rows.forEach((row) => {
-            result.push(`id ${row.id}: ${row.name}`)
+            result.push(row)
         });
+
+
         res.send(result);
+        console.log(result);
     });
 });
 
@@ -49,10 +59,6 @@ app.post('/converter/:entrada', jsonParser, (req, res) => {
     res.end(JSON.stringify(user));
 });
 
-const PORT = process.env.PORT || 8080;
-app.listen(PORT);
-
-
 //Atualizar
 app.put('/converter', jsonParser, function (req, res) {
     let name = req.body.name;
@@ -67,7 +73,6 @@ app.put('/converter', jsonParser, function (req, res) {
         }
     );
 });
-
 
 //Deletar
 app.delete('/converter', jsonParser, function (req, res) {
