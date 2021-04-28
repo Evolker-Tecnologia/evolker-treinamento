@@ -30,24 +30,25 @@ function lerDados(dados) {
 }
 
 
-// var raw = JSON.stringify({
-//     "id": id
-// });
+function deletar() {
+
+    var raw = JSON.stringify({
+        "id": document.getElementById("numeroId").value
+    });
 
 
-// function deletar() {
-//     let meusHeaders = new Headers();
-//     meusHeaders.append("Content-Type", "application/json");
+    let meusHeaders = new Headers();
+    meusHeaders.append("Content-Type", "application/json");
 
-//     let opcoesRequest = {
-//         method: 'DELETE',
-//         headers: meusHeaders,
-//         body: raw,
-//         redirect: 'follow'
-//     };
+    let opcoesRequest = {
+        method: 'DELETE',
+        headers: meusHeaders,
+        body: raw,
+        redirect: 'follow'
+    };
 
-//     fetch("http://localhost:8080/converter", opcoesRequest)
-//         .then(response => response.text())
-//         .then(result => console.log(result))
-//         .catch(error => console.log('error', error));
-// }
+    fetch("http://localhost:8080/converter", opcoesRequest)
+        .then(response => response.text())
+        .then(result => console.log(result))
+        .catch(error => console.log('error', error));
+}
