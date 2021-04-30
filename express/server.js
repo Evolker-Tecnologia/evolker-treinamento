@@ -70,6 +70,7 @@ app.put('/converter', jsonParser, function (req, res) {
             if (err) throw err;
 
             console.log(`Mudou ${result.changedRows} Linha(s)`);
+            res.send(200);
         }
     );
 });
@@ -82,6 +83,7 @@ app.delete('/converter', jsonParser, function (req, res) {
             if (err) throw err;
 
             console.log(`${result.affectedRows} linha(s) deletadas`);
+            res.send(200);
         }
     );
 });

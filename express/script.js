@@ -3,8 +3,9 @@ window.onload = function () {
     ler();
 };
 
-function ler() {
+let listaDeUsuarios = []
 
+function ler() {
     var opcoesRequest = {
         method: 'GET',
         redirect: 'follow'
@@ -14,6 +15,8 @@ function ler() {
         .then(response => response.text())
         .then(result => lerDados(result))
         .catch(error => console.log('error', error));
+
+
 }
 
 function lerDados(dados) {
@@ -27,6 +30,8 @@ function lerDados(dados) {
         ul.appendChild(li);
         li.innerHTML += 'id: ' + usuario.id + ' ------ ' + 'nome: ' + usuario.name;
     });
+
+    listaDeUsuarios = arrayDeUsuarios;
 }
 
 
@@ -46,6 +51,52 @@ function deletar() {
         body: raw,
         redirect: 'follow'
     };
+
+    fetch("http://localhost:8080/converter", opcoesRequest)
+        .then(response => response.text())
+        .then(result => console.log(result))
+        .catch(error => console.log('error', error));
+}
+
+function adicionar() {
+    let name = document.getElementById("nomeUsuario").value;
+
+    var requestOptions = {
+        method: 'POST',
+        redirect: 'follow'
+    };
+
+    fetch("http://localhost:8080/converter/" + name, requestOptions)
+        .then(response => response.text())
+        .then(result => console.log(result))
+        .catch(error => console.log('error', error));
+}
+
+function atualizar() {
+    let nomeDoUsuario = document.getElementById("atualizarUsuario").value
+    let idDoUsuario = document.getElementById("atualizarId").value
+
+    let meusHeaders = new Headers();
+    meusHeaders.append("Content-Type", "application/json");
+
+    var raw = JSON.stringify({
+        "id": idDoUsuario,
+        "name": nomeDoUsuario
+    });
+
+
+    let opcoesRequest = {
+        method: 'PUT',
+        headers: meusHeaders,
+        body: raw,
+        redirect: 'follow'
+    };
+
+    const usuarioAchado = listaDeUsuarios.find(usuario => usuario.id === idDoUsuario);
+
+    if (usuarioAchado) {
+        usuarioAchado.name = nomeDoUsuario;
+    }
 
     fetch("http://localhost:8080/converter", opcoesRequest)
         .then(response => response.text())
