@@ -32,25 +32,25 @@ const PORT = process.env.PORT || 8080;
 app.listen(PORT);
 
 //Ler
-app.get('/converter', jsonParser, (req, res) => {
-    let result = [];
-    mysqlConnection.query('SELECT * FROM users', (err, rows) => {
-        if (err) throw err;
+// app.get('/', jsonParser, (req, res) => {
+//     let result = [];
+//     mysqlConnection.query('SELECT * FROM users', (err, rows) => {
+//         if (err) throw err;
 
-        rows.forEach((row) => {
-            result.push(row)
-        });
+//         rows.forEach((row) => {
+//             result.push(row)
+//         });
 
 
-        res.send(result);
-        console.log(result);
-    });
-});
+//         res.send(result);
+//         console.log(result);
+//     });
+// });
 
 //Criar
-app.post('/converter/:entrada', jsonParser, (req, res) => {
+app.post('/:nomeUsario', jsonParser, (req, res) => {
 
-    var texto = req.params['entrada'];
+    var texto = req.params['nomeUsario'];
     const user = { name: texto };
 
     mysqlConnection.query('INSERT INTO users SET ?', user, (err, res) => {
@@ -60,7 +60,7 @@ app.post('/converter/:entrada', jsonParser, (req, res) => {
 });
 
 //Atualizar
-app.put('/converter', jsonParser, function (req, res) {
+app.put('/', jsonParser, function (req, res) {
     let name = req.body.name;
     let id = req.body.id;
     mysqlConnection.query(
@@ -76,14 +76,44 @@ app.put('/converter', jsonParser, function (req, res) {
 });
 
 //Deletar
-app.delete('/converter', jsonParser, function (req, res) {
+app.delete('/', jsonParser, function (req, res) {
     let id = req.body.id;
     mysqlConnection.query(
         'DELETE FROM users WHERE id = ?', id, (err, result) => {
             if (err) throw err;
-
-            console.log(`${result.affectedRows} linha(s) deletadas`);
             res.send(200);
         }
     );
 });
+
+//Buscar
+app.get('/:id?', jsonParser, function (req, res) {
+
+    let id = req.params.id;
+
+    if (id) {
+        mysqlConnection.query(
+            'SELECT * FROM users WHERE id = ?', id, (err, result) => {
+                if (err) throw err;
+                res.send(result);
+                console.log(result);
+            }
+        );
+    } else {
+        let result = [];
+        mysqlConnection.query('SELECT * FROM users', (err, rows) => {
+            if (err) throw err;
+
+            rows.forEach((row) => {
+                result.push(row)
+            });
+
+
+            res.send(result);
+            console.log(result.id);
+        });
+    }
+
+
+});
+

@@ -11,7 +11,7 @@ function ler() {
         redirect: 'follow'
     };
 
-    fetch("http://localhost:8080/converter", opcoesRequest)
+    fetch("http://localhost:8080/", opcoesRequest)
         .then(response => response.text())
         .then(result => lerDados(result))
         .catch(error => console.log('error', error));
@@ -101,5 +101,20 @@ function atualizar() {
     fetch("http://localhost:8080/converter", opcoesRequest)
         .then(response => response.text())
         .then(result => console.log(result))
+        .catch(error => console.log('error', error));
+}
+
+function identificar() {
+
+    let userId = document.getElementById("idUser").value
+
+    var opcoesRequest = {
+        method: 'GET',
+        redirect: 'follow'
+    };
+
+    fetch("http://localhost:8080/" + userId, opcoesRequest)
+        .then(response => response.text())
+        .then(result => lerDados(result))
         .catch(error => console.log('error', error));
 }
