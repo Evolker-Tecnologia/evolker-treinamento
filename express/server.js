@@ -108,12 +108,9 @@ app.get('/:id?', jsonParser, function (req, res) {
                 result.push(row)
             });
 
-
             res.send(result);
             console.log(result.id);
         });
     }
-
-
 });
 

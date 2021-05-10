@@ -34,7 +34,6 @@ function lerDados(dados) {
     listaDeUsuarios = arrayDeUsuarios;
 }
 
-
 function deletar() {
 
     var raw = JSON.stringify({
@@ -52,7 +51,7 @@ function deletar() {
         redirect: 'follow'
     };
 
-    fetch("http://localhost:8080/converter", opcoesRequest)
+    fetch("http://localhost:8080/", opcoesRequest)
         .then(response => response.text())
         .then(result => console.log(result))
         .catch(error => console.log('error', error));
@@ -66,7 +65,7 @@ function adicionar() {
         redirect: 'follow'
     };
 
-    fetch("http://localhost:8080/converter/" + name, requestOptions)
+    fetch("http://localhost:8080/" + name, requestOptions)
         .then(response => response.text())
         .then(result => console.log(result))
         .catch(error => console.log('error', error));
@@ -98,7 +97,7 @@ function atualizar() {
         usuarioAchado.name = nomeDoUsuario;
     }
 
-    fetch("http://localhost:8080/converter", opcoesRequest)
+    fetch("http://localhost:8080/", opcoesRequest)
         .then(response => response.text())
         .then(result => console.log(result))
         .catch(error => console.log('error', error));
