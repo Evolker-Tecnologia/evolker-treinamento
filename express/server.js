@@ -1,6 +1,5 @@
 const cors = require('cors');
 
-
 const mysql = require('mysql');
 const express = require('express');
 const app = express();
@@ -13,8 +12,8 @@ var jsonParser = bodyParser.json();
 var mysqlConnection = mysql.createConnection({
     host: 'localhost',
     user: 'root',
-    password: 'password',
-    database: 'mydb',
+    password: '',
+    database: 'treinamento',
     multipleStatements: true
 });
 
@@ -30,22 +29,6 @@ mysqlConnection.connect((err) => {
 
 const PORT = process.env.PORT || 8080;
 app.listen(PORT);
-
-//Ler
-// app.get('/', jsonParser, (req, res) => {
-//     let result = [];
-//     mysqlConnection.query('SELECT * FROM users', (err, rows) => {
-//         if (err) throw err;
-
-//         rows.forEach((row) => {
-//             result.push(row)
-//         });
-
-
-//         res.send(result);
-//         console.log(result);
-//     });
-// });
 
 //Criar
 app.post('/:nomeUsario', jsonParser, (req, res) => {
