@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://unpkg.com/vue@next"></script>
+</head>
+<body>
+
+    <div class="eventos">
+        <input v-model='texto' class="texto">
+        <button v-on:click="mostraTexto">ok</button>
+        <p>{{texto}}</p>
+    </div>
+
+    <script>
+
+        const eventos = {
+            data() {
+                return {
+                    texto: this.texto
+                }
+            },
+            methods: {
+                mostraTexto() {
+                    alert(this.texto.toUpperCase())
+                }
+            }
+        }
+
+        Vue.createApp(eventos).mount('.eventos')
+
+
+    </script>
+</body>
+</html>
