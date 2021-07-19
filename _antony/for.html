@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title><script src="https://unpkg.com/vue@next"></script>
+</head>
+<body>
+
+    <div class="for">
+
+        <ol>
+            <li v-for="item in lista">
+                {{item}}
+            </li>
+        </ol>
+
+    </div>
+
+    <script>
+
+        const config = {
+            data() {
+                return {
+                    lista: [
+                        'Antony', 'André', 'João'
+                    ]
+                }
+            }
+        }
+
+        Vue.createApp(config).mount('.for')
+
+    </script>
+
+    <!--
+    <div class="for">
+        <ol>
+            <li v-for="todo in todos">
+                {{todo.text}}
+            </li>
+        </ol>
+    </div>
+
+    <script>
+
+        const config = {
+            data(){
+                return {
+                    todos: [
+                        { text: 'javascript' },
+                        { text: 'java' },
+                        { text: 'python' }
+                    ]
+                }
+            }
+        }
+
+        Vue.createApp(config).mount('.for')
+
+    </script>
+    -->
+</body>
+</html>

@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://unpkg.com/vue@next"></script>
+</head>
+<body>
+    <div class="formulario">
+        <input v-model="texto">
+        <input v-bind:value="converte">
+    </div>
+
+    <script>
+
+        const config = {
+            data() {
+                return {
+                    texto: '',
+                    converte: ''
+                }
+            },
+            updated() {
+                this.converte = this.texto.toUpperCase()
+            }
+        }
+
+        Vue.createApp(config).mount('.formulario')
+
+    </script>
+</body>
+</html>
