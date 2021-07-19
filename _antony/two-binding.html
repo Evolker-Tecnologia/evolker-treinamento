@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title><script src="https://unpkg.com/vue@next"></script>
+</head>
+<body>
+
+    <div class="twoway">
+        <p>{{message}}</p>
+        <input v-model='message'>
+        <input v-model='message'>
+    </div>
+
+    <script>
+
+        const config = {
+            data() {
+                return {
+                    message: ''
+                }
+            }
+        }
+
+        Vue.createApp(config).mount('.twoway')
+
+    </script>
+</body>
+</html>
