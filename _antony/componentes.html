@@ -10,10 +10,11 @@
     <div class="for">
 
         <ol>
-           <item-lista 
-           v-for="item in lista"
-           v-bind:item="item"
-           v-bind:key="item.id"></item-lista>
+            <lista
+            v-for="item in itens"
+            v-bind:item='item.fruta'
+            v-bind:chave='item.id'
+            ></lista>
         </ol>
 
     </div>
@@ -23,23 +24,24 @@
         const config = {
             data() {
                 return {
-                    lista: [
-                        { id:0, text: 'vegetais' },
-                        { id:1, text: 'vegetaiss' },
-                        { id:2, text: 'vegetaisss' }
+                    itens: [
+                        {id:0, fruta: 'bacalhau'},
+                        {id:1, fruta: 'mamão'},
+                        {id:2, fruta: 'melancia'}
                     ]
                 }
             }
         }
-
+         
         const app = Vue.createApp(config)
 
-        app.component('item-lista', {
-            props: ['item'],
-            template: `<li><strong>- {{item.text}}</strong></li>`
+        app.component('lista', {
+            props: ['item', 'chave'],
+            template: `<li>{{item}} {{chave}}</li>`
         })
 
         app.mount('.for')
+
     </script>
 </body>
 </html>

@@ -1,17 +1,18 @@
 <template>
   <img alt="Vue logo" src="./assets/logo.png">
-  <convertCase/>
+  <saida />
 </template>
 
 <script>
-import convertCase from './components/HelloWorld.vue'
+import saida from './components/saida.vue'
 
 export default {
   name: 'App',
   components: {
-    convertCase
+    saida
   }
 }
+
 </script>
 
 <style>
