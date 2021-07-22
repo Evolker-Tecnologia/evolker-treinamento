@@ -1,21 +1,33 @@
 <template>
   <div class="home">
-    <img alt="Vue logo" src="../assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
+    <b-button variant="success">a</b-button>
+    <div>
+      <b-table striped hover :items="items"></b-table>
+    </div>
   </div>
 </template>
 
 <script>
 // @ is an alias to /src
-import HelloWorld from '@/components/HelloWorld.vue'
+
 const axios = require ('axios')
 
-axios.get('https://gorest.co.in/public/v1/users').then(resposta => console.log(resposta.data))
+axios.get('https://gorest.co.in/public/v1/users').then(resposta => resposta.data).then(objeto => listaJson(objeto.data))
+
+let itens = []
+
+function listaJson(objeto) {
+  for(let i in objeto) {
+    itens.push(objeto[i])
+  }
+}
 
 export default {
-  name: 'Home',
-  components: {
-    HelloWorld
-  }
+  data() {
+    return {
+      items: itens
+    }
+  },
+  name: 'Home'
 }
 </script>
